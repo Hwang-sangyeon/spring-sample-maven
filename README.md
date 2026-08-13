@@ -3,7 +3,7 @@
 IntelliJ 테스트용 Spring Boot 3.3.4 + Maven 샘플 프로젝트입니다.
 
 ## 요구 사항
-- JDK 17 이상
+- JDK 17+ 이상
 - IntelliJ IDEA (Community 또는 Ultimate)
 - Maven은 별도 설치 불필요 (IntelliJ 내장 Maven 사용 가능)
 
