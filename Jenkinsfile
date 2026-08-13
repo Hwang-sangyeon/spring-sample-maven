@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         // ===== Harbor Registry 정보 =====
-        REGISTRY    = "syhwang.harbor.com"
+        REGISTRY    = "172.31.1.132"
         PROJECT     = "spring-sample-maven"
         IMAGE_NAME  = "spring-sample"
         IMAGE_TAG   = "${env.BUILD_NUMBER}"
