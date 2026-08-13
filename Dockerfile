@@ -4,7 +4,7 @@ ENV LENA_HOME /usr/local/lena
 RUN mkdir -p $LENA_HOME
 RUN mkdir -p $LENA_HOME/temp
 
-COPY target/ROOT-3.3.4.war $LENA_HOME/ROOT.war
+COPY target/ROOT-1.0.0.war $LENA_HOME/ROOT.war
 
 RUN chmod u+x $LENA_HOME/*.sh
 

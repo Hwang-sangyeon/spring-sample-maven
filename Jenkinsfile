@@ -43,20 +43,11 @@ pipeline {
 
         stage('Docker Image Build') {
             steps {
-                sh "find . -name '*.war'"
-                sh "ls -la target/ || echo 'target 폴더 없음'"
                 sh "docker build -t ${FULL_IMAGE}:${IMAGE_TAG} ."
                 sh "docker tag ${FULL_IMAGE}:${IMAGE_TAG} ${FULL_IMAGE}:latest"
             }
         }
 
-        /* stage('Docker Image Build') {
-            steps {
-                sh "docker build -t ${FULL_IMAGE}:${IMAGE_TAG} ."
-                sh "docker tag ${FULL_IMAGE}:${IMAGE_TAG} ${FULL_IMAGE}:latest"
-            }
-        }
- */
         stage('Push to Harbor') {
             steps {
                 withCredentials([usernamePassword(
