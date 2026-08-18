@@ -64,6 +64,30 @@ pipeline {
             }
         }
 
+        stage('Update Manifest') {
+            steps {
+                withCredentials([usernamePassword(
+                     credentialsId: 'github-token',
+                     usernameVariable: 'GIT_USER',
+                     passwordVariable: 'GIT_PASS'
+                )]) {
+                    sh """
+                        rm -rf manifest-repo
+                        git clone https://\${GIT_USER}:\${GIT_PASS}@github.com/Hwang-sangyeon/spring-sample-maven-manifest.git manifest-repo
+                        cd manifest-repo
+
+                        sed -i "s|image: .*spring-sample:.*|image: ${FULL_IMAGE}:${IMAGE_TAG}|" lena-was-cluster.yaml
+
+                        git config user.email "test@google.com"
+                        git config user.name "syhwang"
+                        git add lena-was-cluster.yaml
+                        git diff --cached --quiet || git commit -m "Deploy spring-sample:${IMAGE_TAG}"
+                        git push origin main
+                    """
+                }
+            }
+        }
+
         stage('Cleanup') {
             steps {
                 // 빌드 후 로컬 이미지 정리 (디스크 용량 관리)
